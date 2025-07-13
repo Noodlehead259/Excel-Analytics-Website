@@ -1,173 +1,188 @@
-# Excel Analytics Website
+# Excel Analytics - MERN Stack Application
 
-A professional, reactive, and colorful Excel analytics website built with the MERN stack (MongoDB, Express.js, React.js, Node.js) featuring JWT authentication, file upload, data visualization with Chart.js, and comprehensive Excel file management.
+A professional Excel analytics website built with the MERN stack (MongoDB, Express.js, React.js, Node.js) featuring JWT authentication, file upload, and data analysis/visualization capabilities.
 
-## Features
+## 🚀 Features
 
-- 🔐 **JWT Authentication** - Secure user registration and login
-- 📁 **File Upload** - Drag & drop Excel file upload with validation
-- 📊 **Data Visualization** - Interactive charts (Bar, Pie, Line) with Chart.js
-- 🔍 **File Management** - View, search, filter, and delete Excel files
-- 📈 **Analytics** - Advanced data analysis and statistics
-- 🎨 **Modern UI** - Beautiful, responsive design with animations
-- 📱 **Mobile Friendly** - Optimized for all device sizes
+- **User Authentication**: Secure JWT-based login/registration system
+- **File Upload**: Support for Excel/CSV files with multiple file upload
+- **Data Visualization**: Interactive charts and analytics using Chart.js
+- **Dark Mode**: Professional dark/light theme toggle
+- **Responsive Design**: Modern UI with styled-components and framer-motion
+- **File Management**: View, analyze, download, and delete uploaded files
+- **Data Analysis**: Comprehensive data insights and statistics
+- **Real-time Search**: Filter and search through uploaded data
+- **Export Functionality**: Download processed data in various formats
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Backend
 - **Node.js** with Express.js
 - **MongoDB** with Mongoose ODM
 - **JWT** for authentication
 - **Multer** for file uploads
-- **XLSX** for Excel file parsing
+- **XLSX** for Excel/CSV processing
 - **Helmet** for security
 - **CORS** for cross-origin requests
 
 ### Frontend
-- **React.js** with hooks
-- **React Router** for navigation
-- **Styled Components** for styling
-- **Framer Motion** for animations
+- **React.js** with hooks and context
+- **Styled-components** for styling
+- **Framer-motion** for animations
 - **Chart.js** for data visualization
-- **Axios** for API calls
+- **React Router** for navigation
 - **React Hot Toast** for notifications
+- **Context API** for state management
 
-## Quick Start
+## 📦 Installation
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- MongoDB (local or cloud)
+- MongoDB (local or Atlas)
 - npm or yarn
 
-### Installation
+### Backend Setup
+```bash
+cd backend
+npm install
+```
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd excel-analytics-website
-   ```
+### Frontend Setup
+```bash
+cd frontend
+npm install
+```
 
-2. **Backend Setup**
-   ```bash
-   cd backend
-   npm install
-   ```
+## ⚙️ Environment Variables
 
-3. **Configure Environment Variables**
-   - Copy `config.env.example` to `config.env`
-   - Update the MongoDB URI and JWT secret:
-   ```env
-   MONGODB_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret_key
-   PORT=5000
-   NODE_ENV=development
-   ```
+### Backend (.env)
+```env
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+PORT=5000
+NODE_ENV=development
+FRONTEND_URI=http://localhost:3000
+```
 
-4. **Frontend Setup**
-   ```bash
-   cd frontend
-   npm install
-   ```
+### Frontend (.env)
+```env
+REACT_APP_API_URL=http://localhost:5000
+```
 
-5. **Configure Frontend Environment**
-   - The `.env` file should already be created with:
-   ```env
-   REACT_APP_API_URL=http://localhost:5000
-   ```
+## 🚀 Running the Application
 
-### Running the Application
+### Development Mode
+```bash
+# Backend (Terminal 1)
+cd backend
+npm run dev
 
-1. **Start Backend Server**
-   ```bash
-   cd backend
-   npm start
-   ```
-   Server will run on `http://localhost:5000`
+# Frontend (Terminal 2)
+cd frontend
+npm start
+```
 
-2. **Start Frontend Development Server**
-   ```bash
-   cd frontend
-   npm start
-   ```
-   Frontend will run on `http://localhost:3000`
+### Production Mode
+```bash
+# Backend
+cd backend
+npm start
 
-3. **Open your browser**
-   Navigate to `http://localhost:3000`
+# Frontend
+cd frontend
+npm run build
+```
 
-## API Endpoints
+## 🌐 Deployment
+
+### Backend (Render)
+1. Connect your GitHub repository to Render
+2. Set environment variables in Render dashboard
+3. Build command: `npm install`
+4. Start command: `npm start`
+
+### Frontend (Vercel)
+1. Connect your GitHub repository to Vercel
+2. Set environment variables in Vercel dashboard
+3. Build command: `npm run build`
+4. Output directory: `build`
+
+### Environment Variables for Production
+- **Render (Backend)**: Add `FRONTEND_URI=https://your-frontend-domain.vercel.app`
+- **Vercel (Frontend)**: Add `REACT_APP_API_URL=https://your-backend.onrender.com`
+
+## 📁 Project Structure
+
+```
+├── backend/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── uploads/
+│   ├── package.json
+│   └── server.js
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   └── App.js
+│   └── package.json
+├── .gitignore
+└── README.md
+```
+
+## 🔧 API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - User registration
 - `POST /api/auth/login` - User login
 - `GET /api/auth/profile` - Get user profile
 
-### Excel Files
-- `POST /api/excel/upload` - Upload Excel file
+### File Management
+- `POST /api/excel/upload` - Upload Excel/CSV files
 - `GET /api/excel/files` - Get user's files
-- `GET /api/excel/:id/data` - Get file data
-- `POST /api/excel/:id/analyze` - Analyze file data
-- `GET /api/excel/:id/download` - Download file
+- `GET /api/excel/files/:id` - Get specific file data
 - `DELETE /api/excel/files/:id` - Delete file
+- `GET /api/excel/download/:id` - Download file
 
-## File Upload Troubleshooting
+## 🎨 Features in Detail
 
-If you encounter upload issues:
+### Authentication System
+- Secure JWT token-based authentication
+- Protected routes and middleware
+- User profile management
 
-1. **Check API URL**: Ensure frontend is posting to the correct backend URL
-2. **Authentication**: Verify JWT token is included in request headers
-3. **File Format**: Only `.xlsx`, `.xls`, and `.csv` files are supported
-4. **File Size**: Maximum file size is 10MB
-5. **CORS**: Ensure backend CORS is properly configured
+### File Upload & Processing
+- Support for Excel (.xlsx, .xls) and CSV files
+- Multiple file upload capability
+- Automatic data parsing and validation
+- File size and type validation
 
-### Common Issues
+### Data Visualization
+- Interactive charts (bar, line, pie, etc.)
+- Real-time data filtering
+- Export functionality
+- Responsive chart layouts
 
-**400 Bad Request Error:**
-- Check if file field name is "file" in FormData
-- Verify file type is supported
-- Ensure all required fields are present
+### User Interface
+- Modern, responsive design
+- Dark/light theme toggle
+- Smooth animations and transitions
+- Professional color scheme
+- Mobile-friendly layout
 
-**401 Unauthorized Error:**
-- Check if JWT token is valid
-- Verify token is included in Authorization header
-- Try logging in again
+## 🔒 Security Features
 
-**CORS Errors:**
-- Ensure backend CORS is configured for frontend URL
-- Check if requests are going to correct backend port
+- JWT token authentication
+- Password hashing with bcrypt
+- CORS configuration
+- Rate limiting
+- Helmet security headers
+- Input validation and sanitization
 
-## Deployment
-
-### Backend (Render)
-1. Connect your GitHub repository to Render
-2. Set environment variables in Render dashboard
-3. Deploy as a Node.js service
-
-### Frontend (Vercel)
-1. Connect your GitHub repository to Vercel
-2. Set environment variables:
-   - `REACT_APP_API_URL` = your backend URL
-3. Deploy
-
-## Project Structure
-
-```
-├── backend/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── uploads/
-│   └── server.js
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── contexts/
-│   │   └── App.js
-│   └── public/
-└── README.md
-```
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -175,10 +190,14 @@ If you encounter upload issues:
 4. Test thoroughly
 5. Submit a pull request
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License.
 
-## Support
+## 🆘 Support
 
-For support and questions, please open an issue in the repository. 
+If you encounter any issues or have questions, please open an issue on GitHub.
+
+---
+
+**Built with ❤️ using the MERN Stack** 
