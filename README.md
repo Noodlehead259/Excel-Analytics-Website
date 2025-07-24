@@ -2,6 +2,8 @@
 
 A professional Excel analytics website built with the MERN stack (MongoDB, Express.js, React.js, Node.js) featuring JWT authentication, file upload, and data analysis/visualization capabilities.
 
+Deployment at : https://excel-analytics-website.vercel.app/
+
 ## 🚀 Features
 
 - **User Authentication**: Secure JWT-based login/registration system
@@ -181,23 +183,3 @@ npm run build
 - Rate limiting
 - Helmet security headers
 - Input validation and sanitization
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🆘 Support
-
-If you encounter any issues or have questions, please open an issue on GitHub.
-
----
-
-**Built with ❤️ using the MERN Stack** 
