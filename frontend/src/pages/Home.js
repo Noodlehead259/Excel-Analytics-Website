@@ -35,6 +35,15 @@ const HeroSection = styled.section`
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
     opacity: 0.3;
   }
+
+  .dark & {
+    background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+    color: var(--gray-100);
+  }
+
+  @media (max-width: 600px) {
+    padding: 3rem 0 2rem 0;
+  }
 `;
 
 const HeroContent = styled.div`
@@ -43,6 +52,10 @@ const HeroContent = styled.div`
   padding: 0 var(--spacing-md);
   position: relative;
   z-index: 1;
+
+  @media (max-width: 600px) {
+    padding: 0 var(--spacing-sm);
+  }
 `;
 
 const HeroTitle = styled(motion.h1)`
@@ -55,6 +68,10 @@ const HeroTitle = styled(motion.h1)`
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
+  @media (max-width: 600px) {
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const HeroSubtitle = styled(motion.p)`
@@ -65,6 +82,10 @@ const HeroSubtitle = styled(motion.p)`
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
 `;
 
 const HeroButtons = styled(motion.div)`
@@ -72,6 +93,9 @@ const HeroButtons = styled(motion.div)`
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  @media (max-width: 600px) {
+    gap: 0.5rem;
+  }
 `;
 
 const HeroButton = styled(Link)`
@@ -105,11 +129,21 @@ const HeroButton = styled(Link)`
       transform: translateY(-2px);
     }
   }
+  @media (max-width: 600px) {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
 `;
 
 const FeaturesSection = styled.section`
   padding: 6rem 0;
   background: white;
+  .dark & {
+    background: var(--gray-900);
+  }
+  @media (max-width: 600px) {
+    padding: 2.5rem 0 1.5rem 0;
+  }
 `;
 
 const SectionContainer = styled.div`
@@ -125,6 +159,13 @@ const SectionTitle = styled(motion.h2)`
   margin-bottom: 1rem;
   color: var(--gray-900);
   font-family: var(--font-family-heading);
+  .dark & {
+    color: var(--gray-100);
+  }
+  @media (max-width: 600px) {
+    font-size: 1.3rem;
+    margin-bottom: 0.7rem;
+  }
 `;
 
 const SectionSubtitle = styled(motion.p)`
@@ -135,6 +176,13 @@ const SectionSubtitle = styled(motion.p)`
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  .dark & {
+    color: var(--gray-300);
+  }
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const FeaturesGrid = styled.div`
@@ -142,6 +190,11 @@ const FeaturesGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const FeatureCard = styled(motion.div)`
@@ -156,6 +209,14 @@ const FeatureCard = styled(motion.div)`
     transform: translateY(-5px);
     box-shadow: var(--shadow-xl);
   }
+  .dark & {
+    background: var(--gray-800);
+    border-color: var(--gray-700);
+    color: var(--gray-100);
+  }
+  @media (max-width: 600px) {
+    padding: 1.1rem;
+  }
 `;
 
 const FeatureIcon = styled.div`
@@ -169,6 +230,12 @@ const FeatureIcon = styled.div`
   color: white;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
+  @media (max-width: 600px) {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const FeatureTitle = styled.h3`
@@ -176,16 +243,35 @@ const FeatureTitle = styled.h3`
   font-weight: 600;
   margin-bottom: 1rem;
   color: var(--gray-900);
+  .dark & {
+    color: var(--gray-100);
+  }
+  @media (max-width: 600px) {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const FeatureDescription = styled.p`
   color: var(--gray-600);
   line-height: 1.6;
+  .dark & {
+    color: var(--gray-300);
+  }
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+  }
 `;
 
 const StatsSection = styled.section`
   background: var(--gray-50);
   padding: 4rem 0;
+  .dark & {
+    background: var(--gray-900);
+  }
+  @media (max-width: 600px) {
+    padding: 1.5rem 0 1rem 0;
+  }
 `;
 
 const StatsGrid = styled.div`
@@ -193,6 +279,9 @@ const StatsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   text-align: center;
+  @media (max-width: 600px) {
+    gap: 0.7rem;
+  }
 `;
 
 const StatCard = styled(motion.div)`
@@ -201,11 +290,24 @@ const StatCard = styled(motion.div)`
     font-weight: 700;
     color: var(--primary-600);
     margin-bottom: 0.5rem;
+    .dark & {
+      color: var(--primary-400);
+    }
+    @media (max-width: 600px) {
+      font-size: 1.3rem;
+      margin-bottom: 0.2rem;
+    }
   }
   
   p {
     color: var(--gray-600);
     font-weight: 500;
+    .dark & {
+      color: var(--gray-300);
+    }
+    @media (max-width: 600px) {
+      font-size: 0.85rem;
+    }
   }
 `;
 
@@ -214,6 +316,13 @@ const CtaSection = styled.section`
   color: white;
   padding: 4rem 0;
   text-align: center;
+  .dark & {
+    background: linear-gradient(135deg, var(--gray-900) 0%, var(--gray-800) 100%);
+    color: var(--gray-100);
+  }
+  @media (max-width: 600px) {
+    padding: 2rem 0 1.2rem 0;
+  }
 `;
 
 const CtaTitle = styled(motion.h2)`
@@ -221,12 +330,20 @@ const CtaTitle = styled(motion.h2)`
   font-weight: 700;
   margin-bottom: 1rem;
   font-family: var(--font-family-heading);
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const CtaSubtitle = styled(motion.p)`
   font-size: 1.125rem;
   margin-bottom: 2rem;
   opacity: 0.9;
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const CtaButton = styled(Link)`
@@ -244,6 +361,10 @@ const CtaButton = styled(Link)`
   &:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
+  }
+  @media (max-width: 600px) {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
   }
 `;
 

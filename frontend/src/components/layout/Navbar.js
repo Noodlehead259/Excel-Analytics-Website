@@ -10,8 +10,6 @@ import {
   FaSignOutAlt, 
   FaSun, 
   FaMoon, 
-  FaBars, 
-  FaTimes,
   FaUpload,
   FaHome
 } from 'react-icons/fa';
@@ -287,77 +285,17 @@ const AuthButton = styled(Link)`
   }
 `;
 
-const MobileMenuButton = styled.button`
-  display: none;
-  background: none;
-  border: none;
-  color: var(--gray-600);
-  font-size: 1.5rem;
-  cursor: pointer;
-  
-  @media (max-width: 768px) {
-    display: block;
-  }
-  
-  .dark & {
-    color: var(--gray-400);
-  }
-`;
-
-const MobileMenu = styled(motion.div)`
-  position: fixed;
-  top: 70px;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 1px solid var(--gray-200);
-  padding: 1rem;
-  z-index: var(--z-dropdown);
-  
-  .dark & {
-    background: var(--gray-800);
-    border-top-color: var(--gray-700);
-  }
-`;
-
-const MobileNavLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  color: var(--gray-700);
-  text-decoration: none;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-  
-  &:hover {
-    background: var(--gray-100);
-    color: var(--primary-600);
-  }
-  
-  .dark & {
-    color: var(--gray-300);
-    
-    &:hover {
-      background: var(--gray-700);
-      color: var(--primary-400);
-    }
-  }
-`;
-
 const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const { isDarkMode, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = () => {
       setShowUserMenu(false);
-      setShowMobileMenu(false);
     };
 
     document.addEventListener('click', handleClickOutside);
@@ -433,45 +371,8 @@ const Navbar = () => {
               </AuthButton>
             </AuthButtons>
           )}
-
-          <MobileMenuButton onClick={() => setShowMobileMenu(!showMobileMenu)}>
-            {showMobileMenu ? <FaTimes /> : <FaBars />}
-          </MobileMenuButton>
         </NavActions>
       </NavContainer>
-
-      <AnimatePresence>
-        {showMobileMenu && (
-          <MobileMenu
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-          >
-            {isAuthenticated ? (
-              <>
-                <MobileNavLink to="/dashboard">
-                  <FaHome /> Dashboard
-                </MobileNavLink>
-                <MobileNavLink to="/upload">
-                  <FaUpload /> Upload
-                </MobileNavLink>
-                <MobileNavLink to="/profile">
-                  <FaUser /> Profile
-                </MobileNavLink>
-                <MobileNavLink as="button" onClick={handleLogout}>
-                  <FaSignOutAlt /> Logout
-                </MobileNavLink>
-              </>
-            ) : (
-              <>
-                <MobileNavLink to="/login">Login</MobileNavLink>
-                <MobileNavLink to="/register">Sign Up</MobileNavLink>
-              </>
-            )}
-          </MobileMenu>
-        )}
-      </AnimatePresence>
     </Nav>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -232,16 +232,25 @@ const TableContainer = styled(motion.div)`
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: 100px;
   body.dark & {
     background: var(--gray-900) !important;
     box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  @media (max-width: 900px) {
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0 0 20px 20px;
   }
 `;
 
 const Table = styled.table`
   width: 100%;
+  min-width: 600px;
   border-collapse: collapse;
 `;
 
@@ -361,10 +370,51 @@ const FileView = () => {
   const [filterColumn, setFilterColumn] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(20);
+  const tableScrollRef = useRef(null);
 
   useEffect(() => {
     fetchFileData();
   }, [id]);
+
+  useEffect(() => {
+    const el = tableScrollRef.current;
+    if (!el) return;
+    let isDown = false;
+    let startX, scrollLeft;
+    const onDown = (e) => {
+      isDown = true;
+      el.classList.add('dragging');
+      startX = e.touches ? e.touches[0].pageX : e.pageX;
+      scrollLeft = el.scrollLeft;
+    };
+    const onMove = (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.touches ? e.touches[0].pageX : e.pageX;
+      const walk = x - startX;
+      el.scrollLeft = scrollLeft - walk;
+    };
+    const onUp = () => {
+      isDown = false;
+      el.classList.remove('dragging');
+    };
+    el.addEventListener('mousedown', onDown);
+    el.addEventListener('touchstart', onDown);
+    el.addEventListener('mousemove', onMove);
+    el.addEventListener('touchmove', onMove);
+    el.addEventListener('mouseleave', onUp);
+    el.addEventListener('mouseup', onUp);
+    el.addEventListener('touchend', onUp);
+    return () => {
+      el.removeEventListener('mousedown', onDown);
+      el.removeEventListener('touchstart', onDown);
+      el.removeEventListener('mousemove', onMove);
+      el.removeEventListener('touchmove', onMove);
+      el.removeEventListener('mouseleave', onUp);
+      el.removeEventListener('mouseup', onUp);
+      el.removeEventListener('touchend', onUp);
+    };
+  }, []);
 
   const fetchFileData = async () => {
     if (!id) {
@@ -556,6 +606,7 @@ const FileView = () => {
         </Controls>
 
         <TableContainer
+          ref={tableScrollRef}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -577,24 +628,29 @@ const FileView = () => {
                 </Tr>
               ))}
             </tbody>
+            {totalPages > 1 && (
+              <tfoot>
+                <tr>
+                  <Td colSpan={columns.length} style={{ padding: 0, background: 'transparent' }}>
+                    <Pagination>
+                      <PageButton
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                      >
+                        Previous
+                      </PageButton>
+                      <PageButton
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                      >
+                        Next
+                      </PageButton>
+                    </Pagination>
+                  </Td>
+                </tr>
+              </tfoot>
+            )}
           </Table>
-
-          {totalPages > 1 && (
-            <Pagination>
-              <PageButton
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-              >
-                Previous
-              </PageButton>
-              <PageButton
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-              >
-                Next
-              </PageButton>
-            </Pagination>
-          )}
         </TableContainer>
       </Content>
     </FileViewContainer>

@@ -23,10 +23,16 @@ const DashboardContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem var(--spacing-md);
+  @media (max-width: 600px) {
+    padding: 1rem var(--spacing-sm);
+  }
 `;
 
 const Header = styled.div`
   margin-bottom: 2rem;
+  @media (max-width: 600px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -38,6 +44,10 @@ const Title = styled.h1`
   html.dark & {
     color: var(--gray-100);
   }
+  @media (max-width: 600px) {
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -46,6 +56,9 @@ const Subtitle = styled.p`
   html.dark & {
     color: var(--gray-400);
   }
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+  }
 `;
 
 const StatsGrid = styled.div`
@@ -53,6 +66,11 @@ const StatsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2rem;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const StatCard = styled(motion.div)`
@@ -85,11 +103,17 @@ const StatCard = styled(motion.div)`
     font-weight: 700;
     color: var(--gray-900);
     margin-bottom: 0.25rem;
+    @media (max-width: 600px) {
+      font-size: 1.2rem;
+    }
   }
   
   .stat-label {
     color: var(--gray-600);
     font-weight: 500;
+    @media (max-width: 600px) {
+      font-size: 0.85rem;
+    }
   }
 
   html.dark & {
@@ -101,6 +125,9 @@ const StatCard = styled(motion.div)`
     .stat-label {
       color: var(--gray-400);
     }
+  }
+  @media (max-width: 600px) {
+    padding: 1rem;
   }
 `;
 
@@ -115,6 +142,10 @@ const ActionsSection = styled.div`
     background: var(--gray-800);
     border-color: var(--gray-700);
   }
+  @media (max-width: 600px) {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ActionsTitle = styled.h2`
@@ -125,12 +156,20 @@ const ActionsTitle = styled.h2`
   html.dark & {
     color: var(--gray-100);
   }
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+  }
 `;
 
 const ActionsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
 `;
 
 const ActionButton = styled(Link)`
@@ -164,6 +203,10 @@ const ActionButton = styled(Link)`
       color: var(--primary-100);
     }
   }
+  @media (max-width: 600px) {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+  }
 `;
 
 const FilesSection = styled.div`
@@ -175,6 +218,9 @@ const FilesSection = styled.div`
   html.dark & {
     background: var(--gray-800);
     border-color: var(--gray-700);
+  }
+  @media (max-width: 600px) {
+    border-radius: var(--radius-lg);
   }
 `;
 
@@ -188,7 +234,13 @@ const FilesHeader = styled.div`
   gap: 1rem;
   html.dark & {
     border-bottom-color: var(--gray-700);
-    background: var(--gray-900); // ensure header is dark
+    background: var(--gray-900);
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0.5rem;
   }
 `;
 
@@ -199,12 +251,19 @@ const FilesTitle = styled.h2`
   html.dark & {
     color: var(--gray-100);
   }
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const SearchContainer = styled.div`
   position: relative;
   flex: 1;
   max-width: 300px;
+  @media (max-width: 600px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -227,6 +286,10 @@ const SearchInput = styled.input`
       color: var(--gray-400);
     }
   }
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.9rem 0.6rem 2.1rem;
+  }
 `;
 
 const SearchIcon = styled.div`
@@ -243,6 +306,9 @@ const FilesList = styled.div`
   background: white;
   html.dark & {
     background: var(--gray-800);
+  }
+  @media (max-width: 600px) {
+    max-height: 300px;
   }
 `;
 
@@ -266,6 +332,12 @@ const FileItem = styled(motion.div)`
       background: var(--gray-700); // medium gray for dark mode
     }
   }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.7rem 1rem;
+    gap: 0.5rem;
+  }
 `;
 
 const FileInfo = styled.div`
@@ -273,6 +345,9 @@ const FileInfo = styled.div`
   align-items: center;
   gap: 1rem;
   flex: 1;
+  @media (max-width: 600px) {
+    gap: 0.5rem;
+  }
 `;
 
 const FileIcon = styled.div`
@@ -285,6 +360,11 @@ const FileIcon = styled.div`
   justify-content: center;
   color: var(--primary-600);
   font-size: 1.25rem;
+  @media (max-width: 600px) {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
 `;
 
 const FileDetails = styled.div`
@@ -297,6 +377,9 @@ const FileDetails = styled.div`
     html.dark & {
       color: var(--gray-100);
     }
+    @media (max-width: 600px) {
+      font-size: 0.98rem;
+    }
   }
   
   .file-meta {
@@ -308,6 +391,11 @@ const FileDetails = styled.div`
     html.dark & {
       color: var(--gray-400);
     }
+    @media (max-width: 600px) {
+      font-size: 0.8rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
   }
 `;
 
@@ -315,6 +403,9 @@ const FileActions = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  @media (max-width: 600px) {
+    gap: 0.3rem;
+  }
 `;
 
 const ActionIcon = styled.button`
@@ -347,6 +438,11 @@ const ActionIcon = styled.button`
       color: var(--primary-100);
     }
   }
+  @media (max-width: 600px) {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
 `;
 
 const EmptyState = styled.div`
@@ -358,6 +454,9 @@ const EmptyState = styled.div`
     font-size: 3rem;
     margin-bottom: 1rem;
     opacity: 0.5;
+    @media (max-width: 600px) {
+      font-size: 2rem;
+    }
   }
   
   h3 {
@@ -368,6 +467,9 @@ const EmptyState = styled.div`
     html.dark & {
       color: var(--gray-100);
     }
+    @media (max-width: 600px) {
+      font-size: 1rem;
+    }
   }
   
   p {
@@ -375,6 +477,12 @@ const EmptyState = styled.div`
     html.dark & {
       color: var(--gray-400);
     }
+    @media (max-width: 600px) {
+      font-size: 0.9rem;
+    }
+  }
+  @media (max-width: 600px) {
+    padding: 1.5rem 0.7rem;
   }
 `;
 
@@ -592,6 +700,9 @@ const Dashboard = () => {
                 <FileActions>
                   <ActionIcon as={Link} to={`/files/${file._id}`}>
                     <FaEye />
+                  </ActionIcon>
+                  <ActionIcon as={Link} to={`/files/${file._id}/analysis`} title="Analyze">
+                    <FaChartBar />
                   </ActionIcon>
                   {/* Add more actions here if needed */}
                 </FileActions>
